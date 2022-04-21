@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreCourse.StateMgmt.Web
 {
@@ -26,26 +27,25 @@ namespace CoreCourse.StateMgmt.Web
             //services.AddDistributedMemoryCache();
 
             // Add a default in-memory implementation of a Cache
-            services.AddMemoryCache();
+            //services.AddMemoryCache();
 
             // Add Session service to the application
             services.AddSession(options =>
             {
-                options.Cookie.SameSite = SameSiteMode.Strict; //protect session id from being hijacked
+                //options.Cookie.SameSite = SameSiteMode.Strict; //protect session id from being hijacked
                 options.Cookie.HttpOnly = true;
                 options.IdleTimeout = TimeSpan.FromSeconds(15); // Set a short timeout for easy testing.
             });
 
-            services.AddMvc();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
@@ -56,12 +56,13 @@ namespace CoreCourse.StateMgmt.Web
             app.UseSession();
 
             app.UseStaticFiles();
+            app.UseRouting();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
