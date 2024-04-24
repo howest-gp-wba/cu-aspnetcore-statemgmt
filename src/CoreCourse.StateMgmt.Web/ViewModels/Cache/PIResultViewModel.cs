@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreCourse.StateMgmt.Web.Models.Cache
+namespace CoreCourse.StateMgmt.Web.ViewModels.Cache
 {
-    public class PIResult
+    public class PIResultViewModel
     {
         public List<int> PiDecimals { get; set; }
         public TimeSpan ElapsedTime { get; set; }

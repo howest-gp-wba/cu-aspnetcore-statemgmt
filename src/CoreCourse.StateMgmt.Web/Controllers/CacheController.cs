@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using CoreCourse.StateMgmt.Web.Models.Cache;
 using CoreCourse.StateMgmt.Web.Services;
+using CoreCourse.StateMgmt.Web.ViewModels.Cache;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -30,7 +30,7 @@ namespace CoreCourse.StateMgmt.Web.Controllers
 
         public async Task<IActionResult> ViewPi()
         {
-            PIResult piResult;
+            PIResultViewModel piResult;
 
 
             Stopwatch sw = Stopwatch.StartNew();
@@ -42,7 +42,7 @@ namespace CoreCourse.StateMgmt.Web.Controllers
                 List<int> digits = await calculatePI();
 
                 //create new object to cache
-                piResult = new PIResult
+                piResult = new PIResultViewModel
                 {
                     PiDecimals = digits,
                     Digits = DIGITS_TO_CALCULATE,
@@ -59,7 +59,7 @@ namespace CoreCourse.StateMgmt.Web.Controllers
             }
             sw.Stop();
 
-            var vm = new ViewPiVm
+            var vm = new ViewPiViewModel
             {
                 Result = piResult,
                 CacheDuration = SECONDS_TO_CACHE,

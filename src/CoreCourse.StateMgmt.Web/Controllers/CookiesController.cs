@@ -1,4 +1,4 @@
-﻿using CoreCourse.StateMgmt.Web.Models.Cookies;
+﻿using CoreCourse.StateMgmt.Web.ViewModels.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,12 +11,12 @@ namespace CoreCourse.StateMgmt.Web.Controllers
     {
         const string COOKIENAME = "TheCookieCookie";
 
-        List<BiscuitVm> AllBiscuits = new List<BiscuitVm> {
-            new BiscuitVm { Name = "Almond Thins", ImageName = "almondthins" },
-            new BiscuitVm { Name = "Butter Crisp", ImageName = "buttercrisp" },
-            new BiscuitVm { Name = "Coconut Biscuit", ImageName = "coconutbiscuit" },
-            new BiscuitVm { Name = "Lace Biscuit", ImageName = "lacebiscuit" },
-            new BiscuitVm { Name = "Speculoos", ImageName = "speculoos" },
+        List<BiscuitViewModel> AllBiscuits = new List<BiscuitViewModel> {
+            new BiscuitViewModel { Name = "Almond Thins", ImageName = "almondthins" },
+            new BiscuitViewModel { Name = "Butter Crisp", ImageName = "buttercrisp" },
+            new BiscuitViewModel { Name = "Coconut Biscuit", ImageName = "coconutbiscuit" },
+            new BiscuitViewModel { Name = "Lace Biscuit", ImageName = "lacebiscuit" },
+            new BiscuitViewModel { Name = "Speculoos", ImageName = "speculoos" },
         };
 
         public IActionResult Index()
@@ -32,13 +32,13 @@ namespace CoreCourse.StateMgmt.Web.Controllers
             }
 
             //in all other cases, show the biscuit list
-            var vm = new IndexVm();
+            var vm = new IndexViewModel();
             vm.Biscuits = AllBiscuits;
             return View("PickCookie", vm);
         }
 
         [HttpPost]
-        public IActionResult SaveCookie(IndexVm model)
+        public IActionResult SaveCookie(IndexViewModel model)
         {
             //send user back to Index if he didn't pick a valid cookie from the list
             if(!AllBiscuits.Select(c => c.ImageName).Contains(model.SelectedBiscuitImage)){

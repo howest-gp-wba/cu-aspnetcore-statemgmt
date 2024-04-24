@@ -18,7 +18,7 @@
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -30,7 +30,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav hidden visible-xs visible-lg">
-                    @Html.Partial("NavigationLinks")
+                    <partial name="_PartialNavigationLinks" />
                 </ul>
                 <div class="dropdown hidden-xs hidden-lg pull-right" style="margin-top:10px;">
                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
@@ -38,7 +38,7 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        @Html.Partial("NavigationLinks")
+                        <partial name="_PartialNavigationLinks" />
                     </ul>
                 </div>
             </div>

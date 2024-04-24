@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreCourse.StateMgmt.Web.Models.TempData
+namespace CoreCourse.StateMgmt.Web.ViewModels.TempData
 {
-    public class IndexVm
+    public class IndexViewModel
     {
         [Required]
-        [Display(Name ="Enter message")]
+        [Display(Name = "Enter message")]
         public string MessageToEcho { get; set; }
 
 
