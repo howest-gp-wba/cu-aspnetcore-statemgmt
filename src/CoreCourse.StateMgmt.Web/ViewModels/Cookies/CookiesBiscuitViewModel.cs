@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreCourse.StateMgmt.Web.ViewModels.Cookies
+namespace CoreCourse.StateMgmt.Web.ViewModels
 {
-    public class BiscuitViewModel
+    public class CookiesBiscuitViewModel
     {
         public string Name { get; set; }
         public string ImageName { get; set; }

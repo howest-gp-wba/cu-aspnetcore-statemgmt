@@ -1,4 +1,4 @@
-﻿using CoreCourse.StateMgmt.Web.ViewModels.ClientState;
+﻿using CoreCourse.StateMgmt.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -13,7 +13,7 @@ namespace CoreCourse.StateMgmt.Web.Controllers
 
         public IActionResult PickDestinationQuery([FromQuery]string[] inventory)
         {
-            ElmoStatusViewModel vm = new ElmoStatusViewModel();
+            ClientStateElmoStatusViewModel vm = new ClientStateElmoStatusViewModel();
             vm.Inventory = inventory;
             return View(vm);
         }
@@ -22,14 +22,14 @@ namespace CoreCourse.StateMgmt.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult PickDestinationPost([FromForm]string[] inventory)
         {
-            ElmoStatusViewModel vm = new ElmoStatusViewModel();
+            ClientStateElmoStatusViewModel vm = new ClientStateElmoStatusViewModel();
             vm.Inventory = inventory;
             return View(vm);
         }
 
         public IActionResult FreezingMountains(string[] inventory)
         {
-            ElmoStatusViewModel vm = new ElmoStatusViewModel();
+            ClientStateElmoStatusViewModel vm = new ClientStateElmoStatusViewModel();
             vm.Location = "the freezing mountains";
             vm.Inventory = inventory;
 
@@ -43,7 +43,7 @@ namespace CoreCourse.StateMgmt.Web.Controllers
 
         public IActionResult ScorchingDesert(string[] inventory)
         {
-            ElmoStatusViewModel vm = new ElmoStatusViewModel();
+            ClientStateElmoStatusViewModel vm = new ClientStateElmoStatusViewModel();
             vm.Location = "the scorching desert";
             vm.Inventory = inventory;
 

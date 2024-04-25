@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace CoreCourse.StateMgmt.Web.ViewModels.Cookies
+namespace CoreCourse.StateMgmt.Web.ViewModels
 {
-    public class IndexViewModel
+    public class CookiesIndexViewModel
     {
-        public List<BiscuitViewModel> Biscuits { get; set; }
+        public List<CookiesBiscuitViewModel> Biscuits { get; set; }
         public string SelectedBiscuitImage { get; set; }
         public bool IsPersistent { get; set; }
     }

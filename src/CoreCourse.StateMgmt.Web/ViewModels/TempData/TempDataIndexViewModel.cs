@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreCourse.StateMgmt.Web.ViewModels.TempData
+namespace CoreCourse.StateMgmt.Web.ViewModels
 {
-    public class IndexViewModel
+    public class TempDataIndexViewModel
     {
         [Required]
         [Display(Name = "Enter message")]

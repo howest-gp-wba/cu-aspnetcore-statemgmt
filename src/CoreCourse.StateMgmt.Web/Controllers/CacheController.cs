@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreCourse.StateMgmt.Web.Services;
-using CoreCourse.StateMgmt.Web.ViewModels.Cache;
+using CoreCourse.StateMgmt.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -59,7 +59,7 @@ namespace CoreCourse.StateMgmt.Web.Controllers
             }
             sw.Stop();
 
-            var vm = new ViewPiViewModel
+            var vm = new CacheViewPiViewModel
             {
                 Result = piResult,
                 CacheDuration = SECONDS_TO_CACHE,

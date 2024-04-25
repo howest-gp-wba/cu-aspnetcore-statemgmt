@@ -1,4 +1,4 @@
-﻿using CoreCourse.StateMgmt.Web.ViewModels.TempData;
+﻿using CoreCourse.StateMgmt.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 
@@ -8,12 +8,12 @@ namespace CoreCourse.StateMgmt.Web.Controllers
     {
         public IActionResult Index(bool? keep)
         {
-            var indexVm = new IndexViewModel { KeepUntilRemoved = keep ?? false };
+            var indexVm = new TempDataIndexViewModel { KeepUntilRemoved = keep ?? false };
             return View(indexVm);
         }
 
         [HttpPost]
-        public IActionResult Index(IndexViewModel model)
+        public IActionResult Index(TempDataIndexViewModel model)
         {
             if (ModelState.IsValid)
             {

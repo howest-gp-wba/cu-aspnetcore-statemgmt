@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System.Linq;
-using CoreCourse.StateMgmt.Web.ViewModels.SessionState;
+using CoreCourse.StateMgmt.Web.ViewModels;
 
 namespace CoreCourse.StateMgmt.Web.Controllers
 {
@@ -12,33 +12,33 @@ namespace CoreCourse.StateMgmt.Web.Controllers
     {
         const string STATEKEY = "SessionBeers";
 
-        List<BeerViewModel> AllBeers = new List<BeerViewModel> {
-            new BeerViewModel { Name = "Brugse Zot", ImageName = "brugsezot" },
-            new BeerViewModel { Name = "Duvel", ImageName = "duvel" },
-            new BeerViewModel { Name = "Grimbergen", ImageName = "grimbergen" },
-            new BeerViewModel { Name = "La Chouffe", ImageName = "lachouffe" },
-            new BeerViewModel { Name = "Leffe", ImageName = "leffe" }
+        List<SessionStateBeerViewModel> AllBeers = new List<SessionStateBeerViewModel> {
+            new SessionStateBeerViewModel { Name = "Brugse Zot", ImageName = "brugsezot" },
+            new SessionStateBeerViewModel { Name = "Duvel", ImageName = "duvel" },
+            new SessionStateBeerViewModel { Name = "Grimbergen", ImageName = "grimbergen" },
+            new SessionStateBeerViewModel { Name = "La Chouffe", ImageName = "lachouffe" },
+            new SessionStateBeerViewModel { Name = "Leffe", ImageName = "leffe" }
         };
 
         public IActionResult Index()
         {
-            var vm = new IndexViewModel();
+            var vm = new SessionStateIndexViewModel();
             vm.Beers = AllBeers;
-            vm.ShoppingCart = new List<BeerViewModel>();
+            vm.ShoppingCart = new List<SessionStateBeerViewModel>();
 
             string serializedBeers = HttpContext.Session.GetString(STATEKEY);
             if (serializedBeers != null)
             {
-                vm.ShoppingCart = JsonConvert.DeserializeObject<List<BeerViewModel>>(serializedBeers);
+                vm.ShoppingCart = JsonConvert.DeserializeObject<List<SessionStateBeerViewModel>>(serializedBeers);
             }
             return View("Index", vm);
         }
 
         [HttpPost]
-        public IActionResult AddBeer(IndexViewModel model)
+        public IActionResult AddBeer(SessionStateIndexViewModel model)
         {
             //get the selected beer from form
-            BeerViewModel selectedBeer = AllBeers.FirstOrDefault(b => b.Name == model.SelectedBeerName);
+            SessionStateBeerViewModel selectedBeer = AllBeers.FirstOrDefault(b => b.Name == model.SelectedBeerName);
             if(selectedBeer == null)
             {
                 return RedirectToAction("Index");
@@ -46,11 +46,11 @@ namespace CoreCourse.StateMgmt.Web.Controllers
 
             //retrieve serialized collection from session
             string serializedBeers = HttpContext.Session.GetString(STATEKEY);
-            List<BeerViewModel> beersInShoppingList = new List<BeerViewModel>();
+            List<SessionStateBeerViewModel> beersInShoppingList = new List<SessionStateBeerViewModel>();
             if(serializedBeers != null)
             {
                 //deserialize JSON string to it's original form
-                beersInShoppingList = JsonConvert.DeserializeObject<List<BeerViewModel>>(serializedBeers);
+                beersInShoppingList = JsonConvert.DeserializeObject<List<SessionStateBeerViewModel>>(serializedBeers);
             }
             //add beer to the List
             beersInShoppingList.Add(selectedBeer);

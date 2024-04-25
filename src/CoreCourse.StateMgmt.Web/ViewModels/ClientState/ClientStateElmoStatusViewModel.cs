@@ -1,6 +1,6 @@
-﻿namespace CoreCourse.StateMgmt.Web.ViewModels.ClientState
+﻿namespace CoreCourse.StateMgmt.Web.ViewModels
 {
-    public class ElmoStatusViewModel
+    public class ClientStateElmoStatusViewModel
     {
         public string Location { get; set; }
         public string Status { get; set; }

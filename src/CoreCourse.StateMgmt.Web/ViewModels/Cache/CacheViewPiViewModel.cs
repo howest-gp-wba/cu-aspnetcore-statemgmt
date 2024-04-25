@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreCourse.StateMgmt.Web.ViewModels.Cache
+namespace CoreCourse.StateMgmt.Web.ViewModels
 {
-    public class ViewPiViewModel
+    public class CacheViewPiViewModel
     {
         /// <summary>
         /// holds the result of the PI calculation
